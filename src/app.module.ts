@@ -30,6 +30,7 @@ import configuration from './config/configuration';
     AlertModule,
     SwapModule,
     EmailModule,
+    AlertModule,
   ],
 })
 export class AppModule {}

@@ -1,85 +1,70 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Crypto Price Tracker and Swap Service
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project is a NestJS application that tracks cryptocurrency prices, provides swap rates, and sends alerts for price changes.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- Track prices for Ethereum and Polygon
+- Get swap rates from ETH to BTC
+- Set price alerts
+- Hourly price checks and notifications
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Prerequisites
 
-## Project setup
+- Node.js (v14 or later)
+- npm (v6 or later)
+- PostgreSQL database
 
-```bash
-$ npm install
-```
+## Installation
 
-## Compile and run the project
+1. Clone the repository:
 
-```bash
-# development
-$ npm run start
+   ```
+   git clone https://github.com/your-username/crypto-price-tracker.git
+   cd crypto-price-tracker
+   ```
 
-# watch mode
-$ npm run start:dev
+2. Install dependencies:
 
-# production mode
-$ npm run start:prod
-```
+   ```
+   npm install
+   ```
 
-## Run tests
+3. Set up environment variables:
+   Create a `.env` file in the root directory and add the following variables:
 
-```bash
-# unit tests
-$ npm run test
+   ```
+   DATABASE_URL=postgresql://username:password@localhost:5432/database_name
+   MORALIS_API_KEY=your_moralis_api_key
+   EMAIL_HOST=smtp.example.com
+   EMAIL_PORT=587
+   EMAIL_USER=your_email@example.com
+   EMAIL_PASS=your_email_password
+   EMAIL_FROM=noreply@example.com
+   ```
 
-# e2e tests
-$ npm run test:e2e
+   Replace the values with your actual database URL, Moralis API key, and email service credentials.
 
-# test coverage
-$ npm run test:cov
-```
+## Running the application
 
-## Resources
+1. Start the application in development mode:
 
-Check out a few resources that may come in handy when working with NestJS:
+   ```
+   npm run start:dev
+   ```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+2. The application will be available at `http://localhost:3000`
 
-## Support
+3. Access the Swagger API documentation at `http://localhost:3000/api`
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## API Endpoints
 
-## Stay in touch
+- `GET /prices/:chain/hourly`: Get hourly prices for the last 24 hours
+- `POST /alerts`: Set a price alert
+- `GET /swap/eth-to-btc`: Get swap rate from ETH to BTC
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+For detailed API documentation, refer to the Swagger UI at `/api`.
 
-## License
+## Testing
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Run unit tests:
